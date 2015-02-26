@@ -1,0 +1,38 @@
+<?php
+
+namespace Craft;
+
+class InputMaskFieldType extends BaseFieldType
+{
+	public function getName()
+	{
+		return Craft::t('Input Mask');
+	}
+	
+	protected function defineSettings()
+	{
+		return array(
+			'mask' => AttributeType::String
+		);
+	}
+	
+	public function getSettingsHtml()
+	{
+		return craft()->templates->render('inputmask/_fieldtype/settings', array(
+			'settings' => $this->getSettings()
+		));
+	}
+
+	public function getInputHtml($name, $value)
+	{
+		$settings = $this->getSettings();
+		$inputId = craft()->templates->formatInputId($name);
+		craft()->templates->includeJsResource('inputmask/javascripts/jquery.maskedinput.min.js');
+		craft()->templates->includeJs('$("#fields-'.$inputId.'").mask("'.$settings['mask'].'")');
+		return craft()->templates->render('inputmask/_fieldtype/index', array(
+			"name" => $name,
+			"id" => $inputId,
+			"value" => $value
+		));
+	}
+}

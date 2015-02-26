@@ -1,0 +1,9 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    label: 'Mask'|t,
+    required: true,
+    name: 'mask',
+    value: settings.mask ? settings.mask : null,
+    instructions: "Example: (999) 999-9999"
+}) }}
