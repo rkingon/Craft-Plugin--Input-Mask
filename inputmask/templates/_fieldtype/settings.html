@@ -1,6 +1,13 @@
 {% import "_includes/forms" as forms %}
 
 {{ forms.textField({
+    label: 'Placeholder'|t,
+    required: false,
+    name: 'placeholder',
+    value: settings.placeholder ? settings.placeholder : null,
+}) }}
+
+{{ forms.textField({
     label: 'Mask'|t,
     required: true,
     name: 'mask',

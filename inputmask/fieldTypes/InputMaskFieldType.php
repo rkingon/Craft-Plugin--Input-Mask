@@ -12,6 +12,7 @@ class InputMaskFieldType extends BaseFieldType
 	protected function defineSettings()
 	{
 		return array(
+			'placeholder' => AttributeType::String,
 			'mask' => AttributeType::String
 		);
 	}
@@ -32,7 +33,8 @@ class InputMaskFieldType extends BaseFieldType
 		return craft()->templates->render('inputmask/_fieldtype/index', array(
 			"name" => $name,
 			"id" => $inputId,
-			"value" => $value
+			"value" => $value,
+			"settings" => $settings
 		));
 	}
 }
